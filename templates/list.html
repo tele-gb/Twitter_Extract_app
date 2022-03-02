@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <table border = 1>
+         <thead>
+            <td>author_id</td>
+            <td>created_at</td>
+            <td>created_at_raw</td>
+            <td>geo</td>
+            <td>tweet_id</td>
+            <td>lang</td>
+            <td>like_count</td>
+            <td>quote_count</td>
+            <td>reply_count</td>
+            <td>retweet_count</td>
+            <td>source</td>
+            <td>text</td>
+            <td>normalised_date</td>
+         </thead>
+         
+         {% for row in posts %}
+            <tr>
+               <td>{{row["author_id"]}}</td>
+               <td>{{row["created_at"]}}</td>
+               <td> {{ row["created_at_raw"]}}</td>
+               <td>{{row['geo']}}</td>	
+               <td>{{row["tweet_id"]}}</td>
+               <td>{{row["lang"]}}</td>
+               <td> {{ row["like_count"]}}</td>
+               <td>{{row['quote_count']}}</td>
+               <td>{{row["reply_count"]}}</td>
+               <td>{{row["retweet_count"]}}</td>
+               <td> {{ row["source"]}}</td>
+               <td>{{row['text']}}</td>
+               <td>{{row["normalised_date"]}}</td>
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <!-- <a href = "/">Go back to home page</a> -->
+      
+   </body>
+</html>

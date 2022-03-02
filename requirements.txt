@@ -1,0 +1,12 @@
+Flask==2.0.3
+Pandas
+requests
+#os - potentially not needed
+#json
+#CSV
+Datetime
+Numpy
+#unicodedata
+#time
+#sqlite3
+#dateutil
