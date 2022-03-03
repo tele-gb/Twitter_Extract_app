@@ -9,3 +9,17 @@ python -m pip install -r requirements.txt
 
 #3 run main.py
 python main.py
+
+
+#-----------------------------on the GCP VM - navigate to source script--------------------
+source activate
+
+#upgrade pip
+python3 -m pip install --upgrade pip
+
+#install requirements
+python3 -m pip install -r requirements.txt
+
+#clone from git
+sudo git clone https://github.com/tele-gb/Twitter_extract_app.git
+sudo git pull https://github.com/tele-gb/Twitter_extract_app.git
