@@ -10,3 +10,4 @@ Numpy
 #time
 #sqlite3
 #dateutil
+google-cloud-bigquery
