@@ -23,3 +23,7 @@ python3 -m pip install -r requirements.txt
 #clone from git
 sudo git clone https://github.com/tele-gb/Twitter_extract_app.git
 sudo git pull https://github.com/tele-gb/Twitter_extract_app.git
+
+
+#add path to bq json
+ $env:GOOGLE_APPLICATION_CREDENTIALS="C:\Dev_And_Apps\Twitter_Extract_app\json key\twitter-bank-sentiment-ac7aab05f50b.json"

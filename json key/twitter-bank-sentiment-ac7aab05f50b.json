@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "twitter-bank-sentiment",
+  "private_key_id": "ac7aab05f50b24eb4439ad4d9d6b441302ff5715",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC1qtrfueuzHY5v\nZC/k+++2BuubkLkQVmxG42z5ORQtov1LaRvWKISYpFk2x0x2HdK0e1yZZ0tS5e9F\nta/uZ5LGEVyddDg3DFFMEJw5dHWJbl/JIR/kxA6ZPXxwisqpMwHcfUI9LMreuIJJ\n5lXwWCvzKAiCnLFJ71y/VtvXWq+WxObZ6gazGPFrX8jSXzCalBEoi+ipeHTu9V7E\n5vtkVGArPw71FQ18DdL/+SPnWMMZd4frf1zLiHfmB3HqdmyjSpfSvsXHirGh/rfC\nJkAD7NjXANtkCW0v0c/5eRUghujM2hIvIXcDNVCiKc+KRdOgiXqWSvrX6GohDv4F\nbUv6j7xnAgMBAAECggEAAhLhVBIGP1GERtV3Kn839hGlCxiRDSLNpA9Lb+/6+cO4\n39DxdIPTclP0K9494KWEgXMj8K92neDcD8/8IkBya+pk0iUWCk1+eIaXkfGqDV7J\nScuyOg/24Hma332QxKwg8TMP9Nd7gAh4RSmwD3O+qD7rvmScn0I3dEOyyTCoJ80y\ncqfTqaPVl21sYXzOjR5T9q+E/iMQT6tFyDzfd+3Cki1saOPEcNhPwXIl8NsGgb2d\nQkHjIelepQOK6ckchpwJEcNhiMBXmxh+la/LQZ60MjNgl3NwLmXknWlqTUUzPiPl\npugtHpQOk71JlN/yKZ/GmAfSb7Rqa1f+OFH0ZeLOsQKBgQDnrGSenvSHWb2B9AgS\nbtahs9sB0MFJcYvWPY5+pijlCGRHXAsR60GGGjD0+yPsBUC1r5lQJeQhj3C1Pq2c\nWLG1i7BkucZ/eR1zQ944DaAp2nF2wu7oxpFrWV/bkplgOLfXCM+TZOSF3zLGX405\ncZBaICBM2Hr8QmFUtMxFpaqjLwKBgQDIvkBwvW9QWknKOdUSB4vw6j2nbgudYVey\n5nrYZ6sZ0nDNbAlpzx/Rj+yDhQbwI6XEx7r9US0QIg4JNd7pZ7hJHnwo9uttGHVR\nvSdaGXH4P70DnmTSyra2TkP7r8kV06h7Dh7uWTU2DWt2YryU7niw5W2NWNQ8QgCC\nAecBSo8MSQKBgQCgOVUZctuxJDpxPuG6RdfA28+ykLqs3Y+Vqtr68lXEGKqpw5mQ\nWgDmCwUi2PG+EN/xB7HjgWEmaLrNTrzpLVoyMZrb/rOug4f/qMduQtYrO/1O4oAy\nkuoNsTEffWL/7hoO6PQOfy+g+n12Pq1ANi9cdW2BWBKulgYUfDnuTSYXVwKBgQCn\nl35BIUYfdWGJfYLPTJGejlDuyUbVG4GWECmbJeGI61HVjk7FkXBlCp1Qp+zE613n\nzT/lYLIYd/Xz5o+1mSwXj2Xk5VBjgjngBeUmqXum37+zl7dg7HBh/zFunLFqkYxl\nP8K/BqcP+2AuM/xw8i68sK4nhXOa4xd9co0jXNXUUQKBgQCz7AlkR2qqYwIK+BEc\n9VeXQEDWRwY55Kd6yOFghRKnlg5bvtU2foB7Citip7KGHKBLjJavlzqiDkTeGKa4\nvKg1vTcSvw70No0hlNgyLcz2nS+HBYtKpNQWd2FHWTUoOfmmXnSKfGNa3nQI4CCA\nXansWKEhoSsExRntDlOcW/sOJA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "twit-sa@twitter-bank-sentiment.iam.gserviceaccount.com",
+  "client_id": "107847685175296137331",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/twit-sa%40twitter-bank-sentiment.iam.gserviceaccount.com"
+}
