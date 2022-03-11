@@ -21,14 +21,13 @@ import pandas as pd
 # BQ_READ()
 
 client = bigquery.Client()
-query_job = client.query(
-    """
+query_job = """
     SELECT
     *
     FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
     WHERE upper(text) like '%@HSBC%'
     LIMIT 10"""
-    )
+    
 
 dataframe = (
     client.query(query_job)
