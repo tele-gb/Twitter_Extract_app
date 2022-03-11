@@ -43,7 +43,7 @@ dataframe = (
 )
 print(dataframe.head())
 
-dataframe.to_csv('bq_test.csv',sep=",",index=False)
+dataframe.to_csv('bq_test.csv',sep=",",index=False,encoding='utf-8',quotechar="'")
 
 
 
