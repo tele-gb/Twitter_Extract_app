@@ -1,33 +1,35 @@
-from google.cloud import bigquery
+from google.cloud import bigquery   
+import pandas as pd
+# import pandas_gbq
 
 
 
-def BQ_READ():
-    client = bigquery.Client()
-    query_job = client.query(
-        """
-        SELECT
-        *
-        FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
-        WHERE upper(text) like '%@HSBC%'
-        LIMIT 10"""
-    )
+# def BQ_READ():
+#     client = bigquery.Client()
+#     query_job = client.query(
+#         """
+#         SELECT
+#         *
+#         FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
+#         WHERE upper(text) like '%@HSBC%'
+#         LIMIT 10"""
+#     )
 
-    results = query_job.result()  # Waits for job to complete.
+#     results = query_job.result()  # Waits for job to complete.
 
-    for row in results:
-        print(row)
+#     for row in results:
+#         print(row)
 
-BQ_READ()
+# BQ_READ()
 
 client = bigquery.Client()
 query_job = client(
-        """
-        SELECT
-        *
-        FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
-        WHERE upper(text) like '%@HSBC%'
-        LIMIT 10"""
+    """
+    SELECT
+    *
+    FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
+    WHERE upper(text) like '%@HSBC%'
+    LIMIT 10"""
     )
 
 
