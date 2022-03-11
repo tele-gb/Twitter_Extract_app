@@ -20,6 +20,7 @@ def BQ_READ():
 
 BQ_READ()
 
+bqclient = bigquery.Client()
 
 dataframe = (
     bqclient.query(query_job)
