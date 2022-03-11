@@ -20,6 +20,15 @@ def BQ_READ():
 
 BQ_READ()
 
+query_job = client.query(
+        """
+        SELECT
+        *
+        FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
+        WHERE upper(text) like '%@HSBC%'
+        LIMIT 10"""
+    )
+
 bqclient = bigquery.Client()
 
 dataframe = (
