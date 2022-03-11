@@ -2,7 +2,7 @@ from google.cloud import bigquery
 
 
 
-def query_stackoverflow():
+def BQ_READ():
     client = bigquery.Client()
     query_job = client.query(
         """
@@ -18,22 +18,21 @@ def query_stackoverflow():
     for row in results:
         print(row)
 
-query_stackoverflow()
+BQ_READ()
 
-def max_tweet():
-    client = bigquery.Client()
-    query_job = client.query(
-        """
-        SELECT
-        max(tweet_id)
-        FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
-        WHERE upper(text) like '%@HSBC%'
-        LIMIT 10"""
+
+dataframe = (
+    bqclient.query(query_job)
+    .result()
+    .to_dataframe(
+        # Optionally, explicitly request to use the BigQuery Storage API. As of
+        # google-cloud-bigquery version 1.26.0 and above, the BigQuery Storage
+        # API is used by default.
+        create_bqstorage_client=True,
     )
+)
+print(dataframe.head())
 
-    results = query_job.result()  # Waits for job to complete.
 
-    for row in results:
-        print(row)
 
-max_tweet()
+
