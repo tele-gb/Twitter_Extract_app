@@ -20,7 +20,8 @@ def BQ_READ():
 
 BQ_READ()
 
-query_job = client.query(
+bqclient = bigquery.Client()
+query_job = bqclient(
         """
         SELECT
         *
@@ -29,7 +30,7 @@ query_job = client.query(
         LIMIT 10"""
     )
 
-bqclient = bigquery.Client()
+
 
 dataframe = (
     bqclient.query(query_job)
