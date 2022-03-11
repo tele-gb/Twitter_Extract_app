@@ -27,3 +27,19 @@ sudo git pull https://github.com/tele-gb/Twitter_extract_app.git
 
 #add path to bq json
 $env:GOOGLE_APPLICATION_CREDENTIALS="path to json"
+
+#read log file
+tail -1f /opt/twitter_extract_app_cron.log 
+#ModuleNotFoundError: No module named 'requests'
+
+#run the cron job manually
+./cron_job.sh
+
+#delete stuff
+rm -rf venv
+
+#Don't clone venv into git - setup sepratly using 
+python3 -m venv venv
+
+#crontab job
+*/2 * * * * chmod +x  /home/kryz_wosik/Twitter_Extract_app/cron_job.sh && /home/kryz_wosik/Twitter_Extract_app/cron_job.sh  >> /home/kryz_wosik/Twitter_Extract_app/twitter_extract_app_cron.log 2>&1
