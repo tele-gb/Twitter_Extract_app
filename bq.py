@@ -56,24 +56,24 @@ def append_data_from_CSV(bq_client, dataset, table_name, file_path, file_name):
     dataset_ref = bq_client.dataset(dataset)
     table_ref = dataset_ref.table(table_name)
     
-    try:
-        job_config = bigquery.LoadJobConfig()
-        job_config.source_format = bigquery.SourceFormat.CSV
-        job_config.skip_leading_rows = 1  # header skipped by default for append
-        job_config.write_disposition = bigquery.WriteDisposition.WRITE_APPEND  # append data to table
+    # try:
+    job_config = bigquery.LoadJobConfig()
+    job_config.source_format = bigquery.SourceFormat.CSV
+    job_config.skip_leading_rows = 1  # header skipped by default for append
+    job_config.write_disposition = bigquery.WriteDisposition.WRITE_APPEND  # append data to table
 
-        # job_config.ignoreUnknownValues = True
-        # job_config.autodetect = True
+    # job_config.ignoreUnknownValues = True
+    # job_config.autodetect = True
 
-        full_file_path = os.path.join(file_path, file_name)
-        with open(full_file_path, "rb") as source_file:
-            job = bq_client.load_table_from_file(source_file, table_ref, job_config=job_config)
+    full_file_path = os.path.join(file_path, file_name)
+    with open(full_file_path, "rb") as source_file:
+        job = bq_client.load_table_from_file(source_file, table_ref, job_config=job_config)
 
-        job.result()  # Waits for table load to complete.
-        #log.info("Loaded {} rows into {}:{}.".format(job.output_rows, dataset, table_name))
-        
-    except Exception as Ex:
-        pass
+    job.result()  # Waits for table load to complete.
+    #log.info("Loaded {} rows into {}:{}.".format(job.output_rows, dataset, table_name))
+    
+    # except Exception as Ex:
+    #     pass
 
 append_data_from_CSV(client,"twitter_bank_sent","tweets2","./","bq_test.csv")
 
