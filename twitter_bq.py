@@ -24,7 +24,7 @@ query_job = client.query(
         """
         SELECT
         max(tweet_id)
-        FROM `twitter-bank-sentiment.twitter_bank_sent.tweets`
+        FROM `twitter-bank-sentiment.twitter_bank_sent.tweets_main`
         """)
 results = query_job.result() 
 for row in results:
@@ -56,7 +56,7 @@ def create_url(keyword,max_results):
                     ##'end_time': end_date,
                     'max_results': max_results,
                     #'sort_order':'relevancy',
-                    'since_id': max_val,
+                    'since_id': maxval,
                     'expansions': 'author_id,in_reply_to_user_id,geo.place_id',
                     'tweet.fields': 'id,text,author_id,in_reply_to_user_id,geo,conversation_id,created_at,lang,public_metrics,referenced_tweets,reply_settings,source',
                     'user.fields': 'id,name,username,created_at,description,public_metrics,verified',
