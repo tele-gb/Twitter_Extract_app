@@ -203,7 +203,7 @@ def upload():
     #final_df.to_sql('Tweets', conn, if_exists='append',index=False)
     final_df.to_parquet('bq_load.gzip',compression="gzip")
 
-    append_data_from_para(client,"twitter_bank_sent","tweets2","./","bq_load.gzip")
+    append_data_from_para(client,"twitter_bank_sent","tweets_main","./","bq_load.gzip")
     
     #clears the dataframe
     final_df = final_df[0:0] 
