@@ -1,6 +1,6 @@
 from google.cloud import bigquery   
 import pandas as pd
-import pandas_gbq
+#import pandas_gbq
 
 # def BQ_READ():
 #     client = bigquery.Client()
