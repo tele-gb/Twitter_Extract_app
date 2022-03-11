@@ -14,6 +14,7 @@ import dateutil.parser
 import unicodedata
 #To add wait time between requests
 import time
+from google.cloud import bigquery
 
 pd.options.display.max_colwidth
 
