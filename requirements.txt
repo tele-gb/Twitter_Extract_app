@@ -11,3 +11,4 @@ Numpy
 #sqlite3
 #dateutil
 google-cloud-bigquery[bqstorage,pandas]
+pyarrow
