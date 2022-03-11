@@ -115,7 +115,7 @@ def create_tweet_df(json_response):
         # 2. Time created
         created_at = dateutil.parser.parse(tweet['created_at'])
         created_at_ls.append(created_at)
-        created_at_raw=tweet['created_at']
+        created_at_raw=dateutil.parser.parse(tweet['created_at'])
         created_at_raw_ls.append(created_at_raw)
 
         # 3. Geolocation
