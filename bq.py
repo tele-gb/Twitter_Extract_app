@@ -20,8 +20,8 @@ def BQ_READ():
 
 BQ_READ()
 
-bqclient = bigquery.Client()
-query_job = bqclient(
+client = bigquery.Client()
+query_job = client(
         """
         SELECT
         *
@@ -33,7 +33,7 @@ query_job = bqclient(
 
 
 dataframe = (
-    bqclient.query(query_job)
+    client.query(query_job)
     .result()
     .to_dataframe(
         # Optionally, explicitly request to use the BigQuery Storage API. As of
