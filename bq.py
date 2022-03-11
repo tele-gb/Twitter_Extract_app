@@ -1,8 +1,6 @@
 from google.cloud import bigquery   
 import pandas as pd
-# import pandas_gbq
-
-
+import pandas_gbq
 
 # def BQ_READ():
 #     client = bigquery.Client()
@@ -23,7 +21,7 @@ import pandas as pd
 # BQ_READ()
 
 client = bigquery.Client()
-query_job = client(
+query_job = client.query(
     """
     SELECT
     *
@@ -31,8 +29,6 @@ query_job = client(
     WHERE upper(text) like '%@HSBC%'
     LIMIT 10"""
     )
-
-
 
 dataframe = (
     client.query(query_job)
