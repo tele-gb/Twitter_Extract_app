@@ -61,6 +61,7 @@ def append_data_from_CSV(bq_client, dataset, table_name, file_path, file_name):
     job_config.source_format = bigquery.SourceFormat.CSV
     job_config.skip_leading_rows = 1  # header skipped by default for append
     job_config.write_disposition = bigquery.WriteDisposition.WRITE_APPEND  # append data to table
+    job_config.allow_quoted_newlines = True  
 
     # job_config.ignoreUnknownValues = True
     # job_config.autodetect = True
