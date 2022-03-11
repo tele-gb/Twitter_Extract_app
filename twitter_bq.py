@@ -154,6 +154,24 @@ def create_tweet_df(json_response):
         #res = [author_id, created_at,created_at_raw, geo, tweet_id, lang, like_count, quote_count, reply_count, retweet_count, source, text]
         #print(res)
 
+def append_data_from_para(bq_client, dataset, table_name, file_path, file_name):
+    """
+    Ingest data to BQ table from CSV file
+    """
+
+    dataset_ref = bq_client.dataset(dataset)
+    table_ref = dataset_ref.table(table_name)
+    
+    # try:
+    job_config = bigquery.LoadJobConfig(source_format=bigquery.SourceFormat.PARQUET)
+
+
+    full_file_path = os.path.join(file_path, file_name)
+    with open(full_file_path, "rb") as source_file:
+        job = bq_client.load_table_from_file(source_file, table_ref, job_config=job_config)
+
+    job.result()  # Waits for table load to complete.
+
 def upload():
     
     json_response = connect_to_endpoint(url[0], headers, url[1])
@@ -182,11 +200,14 @@ def upload():
     print(len(author_ls))
     
     #final_df.to_sql('Tweets', conn, if_exists='append',index=False)
+    final_df.to_parquet('bq_load.gzip',compression="gzip")
+
+    append_data_from_para(client,"twitter_bank_sent","tweets2","./","bq_load.gzip")
     
     #clears the dataframe
-    #final_df = final_df[0:0] 
+    final_df = final_df[0:0] 
     
-    print(final_df['created_at'])
+    # print(final_df['created_at'])
     
     
 upload()
