@@ -1,1 +1,1 @@
-/home/kryz_wosik/Twitter_extract_app/venv/bin/python3 /home/kryz_wosik/Twitter_extract_app/twitter_bq.py
+export GOOGLE_APPLICATION_CREDENTIALS="/home/kryz_wosik/twitter-bank-sentiment-3e3b7bdf2ff1.json" /home/kryz_wosik/Twitter_extract_app/venv/bin/python3 /home/kryz_wosik/Twitter_extract_app/twitter_bq.py
