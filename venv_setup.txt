@@ -10,6 +10,21 @@ python -m pip install -r requirements.txt
 #3 run main.py
 python main.py
 
+#-----------------------------general vm stuff---------------------------------------------
+#update the vm
+sudo apt update -y
+
+https://cloud.google.com/python/docs/setup#linux
+
+sudo apt-get install wget
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3 get-pip.py
+
+#install git
+sudo apt install git
+
+https://cloud.google.com/python/docs/getting-started/getting-started-on-compute-engine
+
 
 #-----------------------------on the GCP VM - navigate to source script--------------------
 source activate
@@ -27,10 +42,13 @@ sudo git pull https://github.com/tele-gb/Twitter_extract_app.git
 
 #add path to bq json
 $env:GOOGLE_APPLICATION_CREDENTIALS="path to json"
+export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json"
 
 #read log file
 tail -1f /opt/twitter_extract_app_cron.log 
-#ModuleNotFoundError: No module named 'requests'
+
+#version for my proper fole
+tail -1f /home/kryz_wosik/Twitter_Extract_app/twitter_extract_app_cron.log
 
 #run the cron job manually
 ./cron_job.sh
