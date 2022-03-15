@@ -220,7 +220,7 @@ new_features=sentvector.transform(test_clean_tweet)
 predict = clfsent.predict(new_features)
 
 df_clean['sent_predict']=predict
-PRINT(df_clean.head(2))
+print(df_clean.head(2))
 
 # df_clean.to_parquet('bq_load.gzip',compression="gzip")
 
