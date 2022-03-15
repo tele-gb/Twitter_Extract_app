@@ -190,6 +190,24 @@ def append_data_from_para(bq_client, dataset, table_name, file_path, file_name):
 
     job.result()  # Waits for table load to complete.
 
-df_clean.to_parquet('bq_load.gzip',compression="gzip")
+#-----sentiment model
+print(test_clean_tweet[0:2])
+#load sentiment models
+clfsent = load('/home/kryz_wosik/Twitter_extract_app/Trained_Models/sent_Model.joblib') 
+sentvector = load("/home/kryz_wosik/Twitter_extract_app/Trained_Models/sentvectorizer.joblib")
 
-append_data_from_para(client,"twitter_bank_sent","tweets_topic_test","./","bq_load.gzip")
+#process data
+test_clean_tweet=[]
+for tweet in df_clean['lemmatizer_tweet']:
+    test_clean_tweet.append(tweet)
+    
+#transform the features
+new_features=sentvector.transform(test_clean_tweet)
+predict = clfsent.predict(new_features)
+
+df_clean['sent_predict']=predict
+PRINT(df_clean.head(2))
+
+# df_clean.to_parquet('bq_load.gzip',compression="gzip")
+
+# append_data_from_para(client,"twitter_bank_sent","tweets_topic_test","./","bq_load.gzip")
