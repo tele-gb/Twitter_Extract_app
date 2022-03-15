@@ -205,7 +205,7 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 
 #-----sentiment model
-print(test_clean_tweet[0:2])
+
 #load sentiment models
 clfsent = load('/home/kryz_wosik/Twitter_extract_app/Trained_Models/sent_Model.joblib') 
 sentvector = load("/home/kryz_wosik/Twitter_extract_app/Trained_Models/sentvectorizer.joblib")
