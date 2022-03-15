@@ -164,7 +164,10 @@ for n in range(predict.shape[0]):
     topic_pred.append(topic_most_pr)
 #     print(topic_pred)
 
-predictdf = pd.DataFrame()
-predictdf['text'] = data_samples
-predictdf['topic'] = topic_pred
-print(predictdf.head())
+# predictdf = pd.DataFrame()
+# predictdf['text'] = data_samples
+# predictdf['topic'] = topic_pred
+# print(predictdf.head())
+
+df_clean['topic_predict'] = topic_pred
+df_clean.head()
