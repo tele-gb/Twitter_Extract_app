@@ -224,4 +224,28 @@ print(df_clean.head(2))
 
 df_clean.to_parquet('bq_load.gzip',compression="gzip")
 
-append_data_from_para(client,"twitter_bank_sent","tweets_topic_modelled","./","bq_load.gzip")
+append_data_from_para(client,"twitter_bank_sent","tweets_topic_staging","./","bq_load.gzip")
+
+
+#***add sql query to add brand
+sql = """
+        create table `twitter-bank-sentiment.twitter_bank_sent.tweets_modelled` AS SELECT
+        *,
+        case  
+            when contains_substr(text,'@TSB') then 'TSB'
+            when contains_substr(text,'@BarclaysUK') then 'Barclays'
+            when contains_substr(text,'@HSBC_UK') then 'HSBC'
+            when contains_substr(text,'@HalifaxBank') then 'Halifax'
+            when contains_substr(text,'@CooperativeBank') then 'CoOp'
+            when contains_substr(text,'@LloydsBank') then 'Lloyds'
+            when contains_substr(text,'@NatWest_Help') then 'NatWest'
+            when contains_substr(text,'@Monzo') then 'Monzo'
+            when contains_substr(text,'@StarlingBank') then 'Starling'
+            when contains_substr(text,'@RBS_Help') then 'RBS'
+            when contains_substr(text,'@RevolutApp') then 'Revolut'
+            when contains_substr(text,'@santanderukhelp') then 'Santander'
+        else 'other' END as brand
+        FROM `twitter-bank-sentiment.twitter_bank_sent.tweets_topic_staging` 
+"""
+
+client.query(sql)
