@@ -46,6 +46,7 @@ sql = """
         *
         FROM `twitter-bank-sentiment.twitter_bank_sent.tweets_main` 
 
+
 """
 
 df = client.query(sql).to_dataframe()
@@ -136,8 +137,13 @@ df_clean['Tweet_length']=df_clean['text'].apply(lambda x: clean_tweet_length(x))
 print(df_clean.head(10))
 
 from joblib import dump, load
-clf = load('C:/Dev_And_Apps/Twitter_Extract_app/Trained_Models/LDA_Model.joblib') 
-savevector = load("C:/Dev_And_Apps/Twitter_Extract_app/Trained_Models/vectorizer.joblib")
+#local loads
+# clf = load('C:/Dev_And_Apps/Twitter_Extract_app/Trained_Models/LDA_Model.joblib') 
+# savevector = load("C:/Dev_And_Apps/Twitter_Extract_app/Trained_Models/vectorizer.joblib")
+
+#vm loads
+clf = load('/Twitter_extract_app/Trained_Models/LDA_Model.joblib') 
+savevector = load("/Twitter_extract_app/Trained_Models/vectorizer.joblib")
 
 #recall model
 # the dataset to predict on (first two samples were also in the training set so one can compare)
