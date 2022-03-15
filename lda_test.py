@@ -170,4 +170,4 @@ for n in range(predict.shape[0]):
 # print(predictdf.head())
 
 df_clean['topic_predict'] = topic_pred
-df_clean.head()
+print(df_clean.head())
