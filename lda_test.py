@@ -171,3 +171,25 @@ for n in range(predict.shape[0]):
 
 df_clean['topic_predict'] = topic_pred
 print(df_clean.head())
+
+def append_data_from_para(bq_client, dataset, table_name, file_path, file_name):
+    """
+    Ingest data to BQ table from CSV file
+    """
+
+    dataset_ref = bq_client.dataset(dataset)
+    table_ref = dataset_ref.table(table_name)
+    
+    # try:
+    job_config = bigquery.LoadJobConfig(source_format=bigquery.SourceFormat.PARQUET)
+
+
+    full_file_path = os.path.join(file_path, file_name)
+    with open(full_file_path, "rb") as source_file:
+        job = bq_client.load_table_from_file(source_file, table_ref, job_config=job_config)
+
+    job.result()  # Waits for table load to complete.
+
+df_clean.to_parquet('bq_load.gzip',compression="gzip")
+
+append_data_from_para(client,"twitter_bank_sent","tweets_topic_test","./","bq_load.gzip")
