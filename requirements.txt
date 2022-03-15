@@ -12,3 +12,6 @@ Numpy
 #dateutil
 google-cloud-bigquery[bqstorage,pandas]
 pyarrow
+nltk
+scikit-learn
+seaborn
