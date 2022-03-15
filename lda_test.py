@@ -142,8 +142,9 @@ from joblib import dump, load
 # savevector = load("C:/Dev_And_Apps/Twitter_Extract_app/Trained_Models/vectorizer.joblib")
 
 #vm loads
-clf = load('/Twitter_extract_app/Trained_Models/LDA_Model.joblib') 
-savevector = load("/Twitter_extract_app/Trained_Models/vectorizer.joblib")
+clf = load('/home/kryz_wosik/Twitter_extract_app/Trained_Models/LDA_Model.joblib') 
+# load(/kryz_wosik/Twitter_extract_app/Trained_Models/LDA_Model.joblib)
+savevector = load("/home/kryz_wosik/Twitter_extract_app/Trained_Models/vectorizer.joblib")
 
 #recall model
 # the dataset to predict on (first two samples were also in the training set so one can compare)
