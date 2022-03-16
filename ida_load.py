@@ -226,12 +226,16 @@ print(df_clean.head(2))
 
 df_clean.to_parquet('bq_load.gzip',compression="gzip")
 
+
+#TRUNCATE CODE RAVI JUST SENT HERE
 append_data_from_para(client,"twitter_bank_sent","tweets_topic_staging","./","bq_load.gzip")
 
 
 #***add sql query to add brand
 sql = """
-        create table `twitter-bank-sentiment.twitter_bank_sent.tweets_modelled` AS SELECT
+
+        INSERT INTO `twitter-bank-sentiment.twitter_bank_sent.tweets_modelled` 
+        SELECT
         *,
         case  
             when contains_substr(text,'@TSB') then 'TSB'
