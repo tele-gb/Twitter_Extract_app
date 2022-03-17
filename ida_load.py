@@ -225,15 +225,24 @@ df_clean.to_parquet('bq_load.gzip',compression="gzip")
 
 
 #TRUNCATE CODE RAVI JUST SENT HERE
-def truncate_table_data(bq_client,dataset_name,table_name, ): 
-    """ Truncate data from BQ table """ 
-    truncate_query = "TRUNCATE TABLE `{dataset_name}.{table_name}`".format(table_name=table_name) 
-    job = bq_client.query(truncate_query) 
-    job.result() # wait for job to complete 
-#    log.info("Truncated {table_name}".format(table_name=table_name)) 
+# def truncate_table_data(bq_client,dataset_name,table_name, ): 
+#     """ Truncate data from BQ table """ 
+#     truncate_query = "TRUNCATE TABLE `{dataset_name}.{table_name}`".format(table_name=table_name) 
+#     job = bq_client.query(truncate_query) 
+#     job.result() # wait for job to complete 
+# #    log.info("Truncated {table_name}".format(table_name=table_name)) 
 
 
-truncate_table_data(client,"twitter_bank_sent","tweets_topic_staging")
+# truncate_table_data(client,"twitter_bank_sent","tweets_topic_staging")
+
+sql_trunc = """
+        TRUNCATE TABLE  `twitter-bank-sentiment.twitter_bank_sent.tweets_topic_staging` 
+"""
+
+client.query(sql_trunc)
+
+
+
 append_data_from_para(client,"twitter_bank_sent","tweets_topic_staging","./","bq_load.gzip")
 
 
