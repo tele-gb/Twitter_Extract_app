@@ -39,6 +39,26 @@ from google.cloud import bigquery
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import NMF
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC, LinearSVC, NuSVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import f1_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
+import re
+import nltk
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
 
 client = bigquery.Client()
 sql = """
@@ -53,17 +73,11 @@ sql = """
 
 df = client.query(sql).to_dataframe()
 
-print(df.head())
+# print(df.head())
 
 #PreProcessing on tweets
 #remove stop words
-import re
-import nltk
-nltk.download('wordnet')
-nltk.download('omw-1.4')
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
-from nltk.stem import WordNetLemmatizer
+
 
 #Remove any rows with a "nan" in them
 df = df.dropna(axis=0, how = 'any')
@@ -145,20 +159,16 @@ from joblib import dump, load
 
 #vm loads
 clf = load('/home/kryz_wosik/Twitter_extract_app/Trained_Models/LDA_Model.joblib') 
-# load(/kryz_wosik/Twitter_extract_app/Trained_Models/LDA_Model.joblib)
 savevector = load("/home/kryz_wosik/Twitter_extract_app/Trained_Models/vectorizer.joblib")
 
 #recall model
 # the dataset to predict on (first two samples were also in the training set so one can compare)
 data_samples = df_clean['lemmatizer_tweet'].tolist()
-#print(data_samples)
-
-# Vectorize the training set using the model features as vocabulary
 
 # transform method returns a matrix with one line per document, columns being topics weight
 predict = clf.transform(savevector.transform(data_samples))
-#print(predict)
 
+#DEFINE THE MAX TOPIC PER TWEET
 topic_pred = []
 for n in range(predict.shape[0]):
     topic_most_pr = predict[n].argmax()
@@ -166,13 +176,9 @@ for n in range(predict.shape[0]):
     topic_pred.append(topic_most_pr)
 #     print(topic_pred)
 
-# predictdf = pd.DataFrame()
-# predictdf['text'] = data_samples
-# predictdf['topic'] = topic_pred
-# print(predictdf.head())
 
 df_clean['topic_predict'] = topic_pred
-print(df_clean.head())
+#print(df_clean.head())
 
 def append_data_from_para(bq_client, dataset, table_name, file_path, file_name):
     """
@@ -184,26 +190,12 @@ def append_data_from_para(bq_client, dataset, table_name, file_path, file_name):
     # try:
     job_config = bigquery.LoadJobConfig(source_format=bigquery.SourceFormat.PARQUET)
 
-
     full_file_path = os.path.join(file_path, file_name)
     with open(full_file_path, "rb") as source_file:
         job = bq_client.load_table_from_file(source_file, table_ref, job_config=job_config)
 
     job.result()  # Waits for table load to complete.
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC, LinearSVC, NuSVC
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import f1_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import precision_score
 
 #-----sentiment model
 
@@ -241,14 +233,10 @@ sql_trunc = """
 
 client.query(sql_trunc)
 
-
-
 append_data_from_para(client,"twitter_bank_sent","tweets_topic_staging","./","bq_load.gzip")
-
 
 #***add sql query to add brand
 sql = """
-
         INSERT INTO `twitter-bank-sentiment.twitter_bank_sent.tweets_modelled` 
         SELECT
         *,
@@ -268,5 +256,4 @@ sql = """
         else 'other' END as brand
         FROM `twitter-bank-sentiment.twitter_bank_sent.tweets_topic_staging` 
 """
-
 client.query(sql)
