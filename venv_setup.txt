@@ -61,4 +61,5 @@ rm -rf venv
 python3 -m venv venv
 
 #crontab job
-*/2 * * * * chmod +x  /home/kryz_wosik/Twitter_Extract_app/cron_job.sh && /home/kryz_wosik/Twitter_Extract_app/cron_job.sh  >> /home/kryz_wosik/Twitter_Extract_app/twitter_extract_app_cron.log 2>&1
+*/10 * * * * chmod +x  /home/kryz_wosik/Twitter_extract_app/cron_job.sh && /home/kryz_wosik/Twitter_extract_app/cron_job.sh  >> /home/kryz_wosik/Twitter_extract_app/twitter_extract_app_cron.log 2>&1
+3-53/10 * * * * chmod +x  /home/kryz_wosik/Twitter_extract_app/cron_job_load.sh && /home/kryz_wosik/Twitter_extract_app/cron_job_load.sh  >> /home/kryz_wosik/Twitter_extract_app/twitter_extract_load_cron.log 2>&1
