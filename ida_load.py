@@ -178,7 +178,6 @@ def append_data_from_para(bq_client, dataset, table_name, file_path, file_name):
     """
     Ingest data to BQ table from CSV file
     """
-
     dataset_ref = bq_client.dataset(dataset)
     table_ref = dataset_ref.table(table_name)
     
@@ -228,15 +227,15 @@ df_clean.to_parquet('bq_load.gzip',compression="gzip")
 
 
 #TRUNCATE CODE RAVI JUST SENT HERE
-def truncate_table_data(bq_client, table_name): 
+def truncate_table_data(bq_client, dataset_ref,table_name, ): 
     """ Truncate data from BQ table """ 
-    truncate_query = "TRUNCATE TABLE `{table_name}`".format(table_name=table_name) 
+    truncate_query = "TRUNCATE TABLE `{dataset_ref}.{table_name}`".format(table_name=table_name) 
     job = bq_client.query(truncate_query) 
     job.result() # wait for job to complete 
-    log.info("Truncated {table_name}".format(table_name=table_name)) 
+#    log.info("Truncated {table_name}".format(table_name=table_name)) 
 
 
-truncate_table_data(client,"tweets_topic_staging")
+truncate_table_data(client,"twitter_bank_sent","tweets_topic_staging")
 
 
 append_data_from_para(client,"twitter_bank_sent","tweets_topic_staging","./","bq_load.gzip")
